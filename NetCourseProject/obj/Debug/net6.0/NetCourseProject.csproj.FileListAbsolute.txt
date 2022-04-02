@@ -1,0 +1,15 @@
+A:\Development\Net\Final Project\NetCourseProject\NetCourseProject\bin\Debug\net6.0\NetCourseProject.exe
+A:\Development\Net\Final Project\NetCourseProject\NetCourseProject\bin\Debug\net6.0\NetCourseProject.deps.json
+A:\Development\Net\Final Project\NetCourseProject\NetCourseProject\bin\Debug\net6.0\NetCourseProject.runtimeconfig.json
+A:\Development\Net\Final Project\NetCourseProject\NetCourseProject\bin\Debug\net6.0\NetCourseProject.dll
+A:\Development\Net\Final Project\NetCourseProject\NetCourseProject\bin\Debug\net6.0\NetCourseProject.pdb
+A:\Development\Net\Final Project\NetCourseProject\NetCourseProject\obj\Debug\net6.0\NetCourseProject.csproj.AssemblyReference.cache
+A:\Development\Net\Final Project\NetCourseProject\NetCourseProject\obj\Debug\net6.0\NetCourseProject.GeneratedMSBuildEditorConfig.editorconfig
+A:\Development\Net\Final Project\NetCourseProject\NetCourseProject\obj\Debug\net6.0\NetCourseProject.AssemblyInfoInputs.cache
+A:\Development\Net\Final Project\NetCourseProject\NetCourseProject\obj\Debug\net6.0\NetCourseProject.AssemblyInfo.cs
+A:\Development\Net\Final Project\NetCourseProject\NetCourseProject\obj\Debug\net6.0\NetCourseProject.csproj.CoreCompileInputs.cache
+A:\Development\Net\Final Project\NetCourseProject\NetCourseProject\obj\Debug\net6.0\NetCourseProject.dll
+A:\Development\Net\Final Project\NetCourseProject\NetCourseProject\obj\Debug\net6.0\refint\NetCourseProject.dll
+A:\Development\Net\Final Project\NetCourseProject\NetCourseProject\obj\Debug\net6.0\NetCourseProject.pdb
+A:\Development\Net\Final Project\NetCourseProject\NetCourseProject\obj\Debug\net6.0\NetCourseProject.genruntimeconfig.cache
+A:\Development\Net\Final Project\NetCourseProject\NetCourseProject\obj\Debug\net6.0\ref\NetCourseProject.dll
