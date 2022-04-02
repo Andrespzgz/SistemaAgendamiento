@@ -20,15 +20,38 @@ namespace FinalProject
             list.Add("4-Buscar contacto");
             list.Add("0-Salir");
 
+            string numSeleccionado;
 
             foreach (string s in list)
                 WriteLine(s);
 
             WriteLine("");
             Write("Por favor ingrese la opcion a consular: ");
-            var numSeleccionado = ReadLine();
+            numSeleccionado = ReadLine();
 
             WriteLine(numSeleccionado);
+
+            switch (numSeleccionado)
+            {
+                case "1":
+                    Write("Ingrese la fecha de la cita (dia, mes, año, hora, minuto): ");
+                    break;
+                case "2":
+                    Write("Ingrese el nombre del contacto: ");
+                    break ;
+                case "3":
+                    Write("Sub menu: ");
+                    break;
+                case "4":
+                    Write("Ingrese el nombre del contacto: ");
+                    break;
+                case "0":
+                    Write("Por favor ingrese la opcion (S) si desea terminar el proceso: ");
+                    break;
+
+
+
+            }    
             ReadKey();
         }
     }
