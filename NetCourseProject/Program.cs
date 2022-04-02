@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using static System.Console;
 using static System.Convert;
 
@@ -21,7 +22,7 @@ namespace FinalProject
             list.Add("0-Salir");
 
             string numSeleccionado;
-            string fecCita;
+            string fecha;
 
             foreach (string menu in list)
                 WriteLine(menu);
@@ -37,10 +38,11 @@ namespace FinalProject
                 case "1":
                     
                     Write("Ingrese la fecha de la cita (dia, mes, año, hora, minuto): ");
-                    fecCita = ReadLine();
-                    var dato = funcita(fecCita);
-                    
-                    WriteLine(dato.print());
+                    //Write("Ingrese el dia: ");
+                    fecha = ReadLine();
+                    funcita(fecha);
+                    //WriteLine(dato);
+                    //WriteLine(dato.print());
                     break;
                 case "2":
                     Write("Ingrese el nombre del contacto: ");
@@ -54,19 +56,23 @@ namespace FinalProject
                 case "0":
                     Write("Por favor ingrese la opcion (S) si desea terminar el proceso: ");
                     break;
-            }    
-
-            static DatosCita funcita (string Cita)
+            }
+           
+           static  void funcita (string Fecha)
             {
-                ModelDatosCita modelDatosCita = new ModelDatosCita();
-                modelDatosCita.Dia = Int32.Parse(Cita.Substring(0,2));
-                modelDatosCita.Mes = Int32.Parse(Cita.Substring(2, 4));
-                modelDatosCita.Año = Int32.Parse(Cita.Substring(4, 8));
-                modelDatosCita.Hora = Int32.Parse(Cita.Substring(8, 10));
-                modelDatosCita.Minuto = Int32.Parse(Cita.Substring(10, 12));
+                var fecha = Fecha.Split(',');
+                foreach (string menu in fecha)
+                    WriteLine(menu);
+                //ModelDatosCita modelDatosCita = new ModelDatosCita();
+                //modelDatosCita.Dia = fdia;
+                //modelDatosCita.Mes = Int32.Parse(Cita.Substring(2, 4));
+                //modelDatosCita.Año = Int32.Parse(Cita.Substring(4, 8));
+                //modelDatosCita.Hora = Int32.Parse(Cita.Substring(8, 10));
+                //modelDatosCita.Minuto = Int32.Parse(Cita.Substring(10, 12));
                 //DatosCita cita = new DatosCita(modelDatosCita.Dia, modelDatosCita.Mes, modelDatosCita.Año, modelDatosCita.Hora, modelDatosCita.Minuto);
-                DatosCita cita = new DatosCita(07, 02, 2022, 16, 59);
-                return cita;
+                //DatosCita cita = new DatosCita(07, 02, 2022, 16, 59);
+                //return fecha;
+                
             }
             ReadKey();
         }
@@ -80,6 +86,16 @@ namespace FinalProject
         public int Hora { get; set; }
         public int Minuto { get; set; }
 
+    }
+    public  class arreglocita
+    {
+      
+        public void Data(string dato)
+        {
+            var datof = dato.Split(';');
+
+        }
+         
     }
     public class DatosCita
     {
