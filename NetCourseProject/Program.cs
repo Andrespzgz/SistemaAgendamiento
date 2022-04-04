@@ -13,6 +13,7 @@ namespace FinalProject
         static void Main(string[] args)
         {
             List<string> list = new List<string>();
+            List<Contactos> contacts = new List<Contactos>();
             
             string numSeleccionado;
             string fechaCita;
@@ -21,7 +22,7 @@ namespace FinalProject
 
 
 
-            WriteLine("Bienvenido a su sistema de agendamiento \n");
+            WriteLine("Bienvenido al sistema de agendamiento de citas \n");
            
             list.Add("1-Añadir cita");
             list.Add("2-Añadir contacto");
@@ -29,13 +30,32 @@ namespace FinalProject
             list.Add("4-Buscar contacto");
             list.Add("0-Salir");
 
+        
+            contacts.Add( new Contactos
+            {
+                Id = 1,
+                Nombres = "Carlos",
+                Apellidos = "Rojas",
+                Telefono = 310553223,
+                Localidad = "Central",
+            });
+
+            contacts.Add(new Contactos
+            {
+                Id= 2,
+                Nombres = "Juan",
+                Apellidos = "Benitez",
+                Telefono = 455454810,
+                Localidad = "Norte",
+            });
+
             
 
             foreach (string menu in list)
                 WriteLine(menu);
 
-            
-            Write("\nPor favor ingrese la opcion a consular: ");
+
+            Write("\nPor favor seleccione una opcion del menu: ");
             numSeleccionado = ReadLine();
 
             WriteLine(numSeleccionado);
@@ -43,18 +63,25 @@ namespace FinalProject
             switch (numSeleccionado)
             {
                 case "1":
-                    
-                    Write("Ingrese la fecha de la cita (dia, mes, año, hora, minuto): ");
-                    fechaCita = ReadLine();
-                    Write("Ingrese una descripcion breve de la cita solicitada: ");
-                    desc = ReadLine();
+
+                    //Write("Ingrese la fecha de la cita (dia, mes, año, hora, minuto): ");
+                    //fechaCita = ReadLine();
+                    //Write("Ingrese una descripcion breve de la cita solicitada: ");
+                    //desc = ReadLine();
                     Write("Ingrese el nombre con quien tendra la cita: ");
                     nomCita = ReadLine();
+                    foreach (var contact in contacts)
+                        WriteLine(contact.Nombres);
+                    //var nombre = new contactos(nomCita);
+
+                    //if(nombre.stack.Contains(nomCita))
+
+                    //    nombre.AddContactoCita(nomCita);
                     //fcita(fechaCita);
                     break;
                 case "2":
                     Write("Ingrese el nombre del contacto: ");
-                    break ;
+                    break;
                 case "3":
                     Write("Sub menu: ");
                     break;
@@ -65,23 +92,23 @@ namespace FinalProject
                     Write("Por favor ingrese la opcion (S) si desea terminar el proceso: ");
                     break;
             }
-           
-           static  void fcita (string Fecha)
+
+            static void fcita(string Fecha)
             {
                 var fecha = Fecha.Split(',');
                 int i = 0;
                 Hashtable hash = new Hashtable();
 
                 foreach (string menu in fecha)
-                    hash.Add(i++,menu);
+                    hash.Add(i++, menu);
 
-                ModelDatosCita.Dia    = hash[0] as string;
-                ModelDatosCita.Mes    = hash[1] as string;
-                ModelDatosCita.Año    = hash[2] as string;
-                ModelDatosCita.Hora   = hash[3] as string;
+                ModelDatosCita.Dia = hash[0] as string;
+                ModelDatosCita.Mes = hash[1] as string;
+                ModelDatosCita.Año = hash[2] as string;
+                ModelDatosCita.Hora = hash[3] as string;
                 ModelDatosCita.Minuto = hash[4] as string;
 
-                
+
                 WriteLine($"Fecha: {ModelDatosCita.Dia }-{ModelDatosCita.Mes}-{ModelDatosCita.Año}, hora: {ModelDatosCita.Hora}:{ModelDatosCita.Minuto}");
 
 
@@ -90,6 +117,35 @@ namespace FinalProject
             ReadKey();
         }
     }    
+
+    public class Contactos
+    {
+        public int Id { get; set; }
+        public string Nombres { get; set; }
+        public string Apellidos { get; set; }
+        public int Telefono { get; set; }
+        public string Localidad { get; set; }
+    }
+    //public class contactos
+    //{
+    //    private string _nombre;
+    //    public Stack stack = new Stack();
+    //    public contactos(string Nombre)
+    //    {
+    //        _nombre = Nombre;
+
+    //        stack.Push("Pedro");
+    //        stack.Push("Juan");
+    //        stack.Push("Ramiro");
+    //    }
+
+    //public string AddContactoCita(string Nombre)
+    //    {
+    //        stack.Push(Nombre);
+
+    //        return $"{Nombre} ha sigo guardado";
+    //    }
+    //}
     public class DatosCita
     {
         private int _dia;
