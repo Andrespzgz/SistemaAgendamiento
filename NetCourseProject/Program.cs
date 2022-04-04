@@ -12,23 +12,30 @@ namespace FinalProject
     {
         static void Main(string[] args)
         {
-            WriteLine("Bienvenido a su sistema de agendamiento");
-            WriteLine("");
             List<string> list = new List<string>();
+            
+            string numSeleccionado;
+            string fechaCita;
+            string desc;
+            string nomCita;
+
+
+
+            WriteLine("Bienvenido a su sistema de agendamiento \n");
+           
             list.Add("1-Añadir cita");
             list.Add("2-Añadir contacto");
             list.Add("3-Consultar cita");
             list.Add("4-Buscar contacto");
             list.Add("0-Salir");
 
-            string numSeleccionado;
-            string fecha;
+            
 
             foreach (string menu in list)
                 WriteLine(menu);
 
-            WriteLine("");
-            Write("Por favor ingrese la opcion a consular: ");
+            
+            Write("\nPor favor ingrese la opcion a consular: ");
             numSeleccionado = ReadLine();
 
             WriteLine(numSeleccionado);
@@ -38,11 +45,12 @@ namespace FinalProject
                 case "1":
                     
                     Write("Ingrese la fecha de la cita (dia, mes, año, hora, minuto): ");
-                    //Write("Ingrese el dia: ");
-                    fecha = ReadLine();
-                    funcita(fecha);
-                    //WriteLine(dato);
-                    //WriteLine(dato.print());
+                    fechaCita = ReadLine();
+                    Write("Ingrese una descripcion breve de la cita solicitada: ");
+                    desc = ReadLine();
+                    Write("Ingrese el nombre con quien tendra la cita: ");
+                    nomCita = ReadLine();
+                    //fcita(fechaCita);
                     break;
                 case "2":
                     Write("Ingrese el nombre del contacto: ");
@@ -58,45 +66,30 @@ namespace FinalProject
                     break;
             }
            
-           static  void funcita (string Fecha)
+           static  void fcita (string Fecha)
             {
                 var fecha = Fecha.Split(',');
+                int i = 0;
+                Hashtable hash = new Hashtable();
+
                 foreach (string menu in fecha)
-                    WriteLine(menu);
-                //ModelDatosCita modelDatosCita = new ModelDatosCita();
-                //modelDatosCita.Dia = fdia;
-                //modelDatosCita.Mes = Int32.Parse(Cita.Substring(2, 4));
-                //modelDatosCita.Año = Int32.Parse(Cita.Substring(4, 8));
-                //modelDatosCita.Hora = Int32.Parse(Cita.Substring(8, 10));
-                //modelDatosCita.Minuto = Int32.Parse(Cita.Substring(10, 12));
-                //DatosCita cita = new DatosCita(modelDatosCita.Dia, modelDatosCita.Mes, modelDatosCita.Año, modelDatosCita.Hora, modelDatosCita.Minuto);
-                //DatosCita cita = new DatosCita(07, 02, 2022, 16, 59);
-                //return fecha;
+                    hash.Add(i++,menu);
+
+                ModelDatosCita.Dia    = hash[0] as string;
+                ModelDatosCita.Mes    = hash[1] as string;
+                ModelDatosCita.Año    = hash[2] as string;
+                ModelDatosCita.Hora   = hash[3] as string;
+                ModelDatosCita.Minuto = hash[4] as string;
+
                 
+                WriteLine($"Fecha: {ModelDatosCita.Dia }-{ModelDatosCita.Mes}-{ModelDatosCita.Año}, hora: {ModelDatosCita.Hora}:{ModelDatosCita.Minuto}");
+
+
+
             }
             ReadKey();
         }
-    }
-
-    public class ModelDatosCita
-    {
-        public int Dia { get; set; }
-        public int Mes { get; set; }
-        public int Año { get; set; }
-        public int Hora { get; set; }
-        public int Minuto { get; set; }
-
-    }
-    public  class arreglocita
-    {
-      
-        public void Data(string dato)
-        {
-            var datof = dato.Split(';');
-
-        }
-         
-    }
+    }    
     public class DatosCita
     {
         private int _dia;
