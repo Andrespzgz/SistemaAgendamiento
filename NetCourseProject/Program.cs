@@ -13,6 +13,7 @@ namespace FinalProject
 
         static void Main(string[] args)
         {
+            /*Declaración de variables*/
             List<string> list = new List<string>();
             List<Contactos> contacts = Contactos.GetContactos();
 
@@ -20,8 +21,7 @@ namespace FinalProject
             string fechaCita;
             string desc;
             string nomCita;
-
-
+            int id;
 
             WriteLine("Bienvenido al sistema de agendamiento de citas \n");
            
@@ -30,9 +30,7 @@ namespace FinalProject
             list.Add("3-Consultar cita");
             list.Add("4-Buscar contacto");
             list.Add("0-Salir");
-
-
-
+                       
 
             foreach (string menu in list)
                 WriteLine(menu);
@@ -47,33 +45,26 @@ namespace FinalProject
             {
                 case "1":
 
-                    //Write("Ingrese la fecha de la cita (dia, mes, año, hora, minuto): ");
-                    //fechaCita = ReadLine();
-                    //Write("Ingrese una descripcion breve de la cita solicitada: ");
-                    //desc = ReadLine();
+                    Write("Ingrese la fecha de la cita (dia, mes, año, hora, minuto): ");
+                    fechaCita = ReadLine();
+                    Write("Ingrese una descripcion breve de la cita solicitada: ");
+                    desc = ReadLine();
                     Write("Ingrese el nombre con quien tendra la cita: ");
                     nomCita = ReadLine();
+                    var existe = contacts.Exists(x => x.FisrtName.Contains(nomCita));
 
-                    var filtro = contacts.Where(a => a.FisrtName.Contains(nomCita));
-                    var contactos = from l in filtro
-                                    select new
-                                    {
-                                        ID = l.Id,
-                                        FirstName = l.FisrtName,
-                                        LastName = l.LastName
-                                    };
-
-                    foreach (var item in contactos)
+                    if (existe)
                     {
-                        WriteLine($"Id: {item.ID} - {item.FirstName} {item.LastName}");
+                        liscont(contacts, nomCita);
+                        Write("Ingresa el Id del contacto: ");
+                        id = ToInt32(ReadLine());
+                        saveCita(id, contacts);
+                        var x = datosCita(fechaCita);
                     }
+                        
+                    else
+                        WriteLine("No existe el contacto ingresado!");
 
-                    //var nombre = new contactos(nomCita);
-
-                    //if(nombre.stack.Contains(nomCita))
-
-                    //    nombre.AddContactoCita(nomCita);
-                    //fcita(fechaCita);
                     break;
                 case "2":
                     Write("Ingrese el nombre del contacto: ");
@@ -89,7 +80,7 @@ namespace FinalProject
                     break;
             }
 
-            static void fcita(string Fecha)
+            static string datosCita(string Fecha)
             {
                 var fecha = Fecha.Split(',');
                 int i = 0;
@@ -105,16 +96,57 @@ namespace FinalProject
                 ModelDatosCita.Minuto = hash[4] as string;
 
 
-                WriteLine($"Fecha: {ModelDatosCita.Dia }-{ModelDatosCita.Mes}-{ModelDatosCita.Año}, hora: {ModelDatosCita.Hora}:{ModelDatosCita.Minuto}");
+                var Datos = ($"Fecha: {ModelDatosCita.Dia }-{ModelDatosCita.Mes}-{ModelDatosCita.Año}, hora: {ModelDatosCita.Hora}:{ModelDatosCita.Minuto}");
 
+                //DatosCita Datos = new DatosCita(ToInt32(ModelDatosCita.Dia), ToInt32(ModelDatosCita.Mes),
+                //                                ToInt32(ModelDatosCita.Año), ToInt32(ModelDatosCita.Hora), ToInt32(ModelDatosCita.Minuto));
 
+                return Datos;
+            }
 
+            static void liscont (List<Contactos> contacts,string contacto)
+            {
+                var contactos = from l in contacts
+                                where l.FisrtName.Contains(contacto)
+                                select new
+                                {
+                                    ID = l.Id,
+                                    FirstName = l.FisrtName,
+                                    LastName = l.LastName
+                                };
+
+                foreach (var item in contactos)
+                {
+                    WriteLine($"Id: {item.ID} - {item.FirstName} {item.LastName}");
+                }
+            }
+            
+            static void saveCita (int id, List<Contactos> contacts)
+            {
+                string dato;
+                var contacto = from l in contacts
+                                where l.Id == id
+                                select new
+                                {
+                                    FirstName = l.FisrtName,
+                                    LastName = l.LastName,
+                                    Telefono = l.Telefono
+                                };
+                
+                foreach (var item in contacto)
+                       dato=($"Nombre: {item.FirstName} {item.LastName}, Telefono: {item.Telefono}");
+                       //return dato;
             }
             ReadKey();
         }
     }    
 
-    public class DatosCita
+    public class saveDataCita
+    {
+
+
+    }
+    public  class DatosCita
     {
         private int _dia;
         private int _mes;
@@ -124,9 +156,10 @@ namespace FinalProject
         public DatosCita(int dia, int mes, int año, int hora, int minuto)
             => (_dia,_mes,_año,_hora,_minuto)=(dia, mes, año, hora, minuto);
 
-        public int print()
+        public string print(string contacto)
         {
-           return _dia;
+            var datosCita = $"La cita fue seleccionada con el contacto: y se llevara a cabo el día {_dia} del mes {_mes} del año {_año}, con la siguiente hora: {_hora}:{_minuto}";
+           return datosCita;
         }
     }
 }
