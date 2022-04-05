@@ -10,11 +10,12 @@ namespace FinalProject
 {
     public class Program
     {
+
         static void Main(string[] args)
         {
             List<string> list = new List<string>();
-            List<Contactos> contacts = new List<Contactos>();
-            
+            List<Contactos> contacts = Contactos.GetContactos();
+
             string numSeleccionado;
             string fechaCita;
             string desc;
@@ -30,26 +31,8 @@ namespace FinalProject
             list.Add("4-Buscar contacto");
             list.Add("0-Salir");
 
-        
-            contacts.Add( new Contactos
-            {
-                Id = 1,
-                Nombres = "Carlos",
-                Apellidos = "Rojas",
-                Telefono = 310553223,
-                Localidad = "Central",
-            });
 
-            contacts.Add(new Contactos
-            {
-                Id= 2,
-                Nombres = "Juan",
-                Apellidos = "Benitez",
-                Telefono = 455454810,
-                Localidad = "Norte",
-            });
 
-            
 
             foreach (string menu in list)
                 WriteLine(menu);
@@ -70,8 +53,21 @@ namespace FinalProject
                     //desc = ReadLine();
                     Write("Ingrese el nombre con quien tendra la cita: ");
                     nomCita = ReadLine();
-                    foreach (var contact in contacts)
-                        WriteLine(contact.Nombres);
+
+                    var filtro = contacts.Where(a => a.FisrtName.Contains(nomCita));
+                    var contactos = from l in filtro
+                                    select new
+                                    {
+                                        ID = l.Id,
+                                        FirstName = l.FisrtName,
+                                        LastName = l.LastName
+                                    };
+
+                    foreach (var item in contactos)
+                    {
+                        WriteLine($"Id: {item.ID} - {item.FirstName} {item.LastName}");
+                    }
+
                     //var nombre = new contactos(nomCita);
 
                     //if(nombre.stack.Contains(nomCita))
@@ -118,34 +114,6 @@ namespace FinalProject
         }
     }    
 
-    public class Contactos
-    {
-        public int Id { get; set; }
-        public string Nombres { get; set; }
-        public string Apellidos { get; set; }
-        public int Telefono { get; set; }
-        public string Localidad { get; set; }
-    }
-    //public class contactos
-    //{
-    //    private string _nombre;
-    //    public Stack stack = new Stack();
-    //    public contactos(string Nombre)
-    //    {
-    //        _nombre = Nombre;
-
-    //        stack.Push("Pedro");
-    //        stack.Push("Juan");
-    //        stack.Push("Ramiro");
-    //    }
-
-    //public string AddContactoCita(string Nombre)
-    //    {
-    //        stack.Push(Nombre);
-
-    //        return $"{Nombre} ha sigo guardado";
-    //    }
-    //}
     public class DatosCita
     {
         private int _dia;
