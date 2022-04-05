@@ -51,6 +51,7 @@ namespace FinalProject
                     desc = ReadLine();
                     Write("Ingrese el nombre con quien tendra la cita: ");
                     nomCita = ReadLine();
+
                     var existe = contacts.Exists(x => x.FisrtName.Contains(nomCita));
 
                     if (existe)
@@ -58,8 +59,10 @@ namespace FinalProject
                         liscont(contacts, nomCita);
                         Write("Ingresa el Id del contacto: ");
                         id = ToInt32(ReadLine());
-                        saveCita(id, contacts);
-                        var x = datosCita(fechaCita);
+                        var resultado = fdatosCita(fechaCita);
+
+                        var resultado1 = fsaveCita(id, contacts);
+                        WriteLine($"{resultado} - {resultado1}");
                     }
                         
                     else
@@ -80,7 +83,7 @@ namespace FinalProject
                     break;
             }
 
-            static string datosCita(string Fecha)
+            static string fdatosCita(string Fecha)
             {
                 var fecha = Fecha.Split(',');
                 int i = 0;
@@ -97,9 +100,6 @@ namespace FinalProject
 
 
                 var Datos = ($"Fecha: {ModelDatosCita.Dia }-{ModelDatosCita.Mes}-{ModelDatosCita.Año}, hora: {ModelDatosCita.Hora}:{ModelDatosCita.Minuto}");
-
-                //DatosCita Datos = new DatosCita(ToInt32(ModelDatosCita.Dia), ToInt32(ModelDatosCita.Mes),
-                //                                ToInt32(ModelDatosCita.Año), ToInt32(ModelDatosCita.Hora), ToInt32(ModelDatosCita.Minuto));
 
                 return Datos;
             }
@@ -120,22 +120,23 @@ namespace FinalProject
                     WriteLine($"Id: {item.ID} - {item.FirstName} {item.LastName}");
                 }
             }
-            
-            static void saveCita (int id, List<Contactos> contacts)
+
+            static string fsaveCita(int id, List<Contactos> contacts)
             {
-                string dato;
+                string dato = "";
                 var contacto = from l in contacts
-                                where l.Id == id
-                                select new
-                                {
-                                    FirstName = l.FisrtName,
-                                    LastName = l.LastName,
-                                    Telefono = l.Telefono
-                                };
+                               where l.Id == id
+                               select new
+                               {
+                                   FirstName = l.FisrtName,
+                                   LastName = l.LastName,
+                                   Telefono = l.Telefono
+                               };
                 
                 foreach (var item in contacto)
-                       dato=($"Nombre: {item.FirstName} {item.LastName}, Telefono: {item.Telefono}");
-                       //return dato;
+                    dato = ($"Nombre: {item.FirstName} {item.LastName}, Telefono: {item.Telefono}");
+               
+                return dato;
             }
             ReadKey();
         }
@@ -143,7 +144,8 @@ namespace FinalProject
 
     public class saveDataCita
     {
-
+        
+       
 
     }
     public  class DatosCita
