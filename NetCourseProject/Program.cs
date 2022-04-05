@@ -16,6 +16,8 @@ namespace FinalProject
             /*Declaración de variables*/
             List<string> list = new List<string>();
             List<Contactos> contacts = Contactos.GetContactos();
+            FileStream fs = new FileStream("agenda.txt", FileMode.OpenOrCreate);
+            fs.Close();
 
             string numSeleccionado;
             string fechaCita;
@@ -63,6 +65,7 @@ namespace FinalProject
 
                         var resultado1 = fsaveCita(id, contacts);
                         WriteLine($"{resultado} - {resultado1}");
+                        saveDataCita.sendData(resultado1, resultado);
                     }
                         
                     else
@@ -140,13 +143,31 @@ namespace FinalProject
             }
             ReadKey();
         }
-    }    
+    }
 
-    public class saveDataCita
+    public static class saveDataCita
     {
-        
-       
 
+        public static void sendData(string nombre, string fecha)
+        {
+            try
+            {
+                // Escribir en un archivo
+                FileStream fs = new FileStream("agenda.txt", FileMode.Append);
+
+                string cadena = $"{nombre}|{fecha};";
+
+                fs.Write(ASCIIEncoding.ASCII.GetBytes(cadena), 0, cadena.Length);
+                fs.Close();
+
+
+            }
+            catch (InvalidCastException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+        }
     }
     public  class DatosCita
     {
